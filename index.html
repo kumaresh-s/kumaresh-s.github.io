@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavin Shantanu | Quality Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0; /* Forces canvas to the absolute bottom layer */
+        }
+        /* Structural layout elements sit firmly above canvas layers */
+        section, nav, footer, button {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* SAFE-RENDER SYSTEM: Prevent elements from hiding during render delays */
+        .reveal-section {
+            opacity: 0.15;
+            transform: translateY(20px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar Active Scroll Highlights - Clean Text Glow Only */
+        .nav-link {
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .nav-link.active-nav {
+            color: #34d399 !important; /* Emerald 400 */
+            text-shadow: 0 0 12px rgba(52, 211, 153, 0.6), 0 0 4px rgba(52, 211, 153, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-slate-100 font-sans antialiased selection:bg-emerald-500/30 text-[16px] md:text-[18px]">
+
+    <canvas id="starCanvas"></canvas>
+
+    <nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+            <span class="text-2xl font-bold tracking-wider text-emerald-400 font-mono">KAVIN.S</span>
+            <div class="hidden md:flex space-x-10 text-base font-medium text-slate-300">
+                <a href="#about" id="nav-about" class="nav-link hover:text-emerald-400">About</a>
+                <a href="#skills" id="nav-skills" class="nav-link hover:text-emerald-400">Skills</a>
+                <a href="#experience" id="nav-experience" class="nav-link hover:text-emerald-400">Experience</a>
+                <a href="#projects" id="nav-projects" class="nav-link hover:text-emerald-400">Projects</a>
+                <a href="#contact" id="nav-contact" class="nav-link hover:text-emerald-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="text-center max-w-4xl mx-auto bg-gray-950/40 backdrop-blur-sm p-8 rounded-2xl relative z-10">
+            <span class="text-emerald-400 font-mono text-base tracking-widest uppercase block mb-4 animate-pulse">Hi, my name is</span>
+            <h1 class="text-6xl md:text-8xl font-extrabold text-slate-100 tracking-tight mb-6">Kavin Shantanu</h1>
+            
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-400 mb-8 min-h-[4.5rem] sm:min-h-[3.5rem] md:min-h-[4rem] flex items-center justify-center">
+                <span class="inline-block text-slate-100 tracking-wide text-center">
+                <span id="typewriter"></span><span class="text-emerald-400 animate-pulse font-light">|</span>
+                </span>
+            </h2>
+            
+            <p class="text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+                ISTQB Certified Quality Engineer specializing in End-to-End (E2E) testing, API validation, and scalable test automation frameworks. Leveraging modern AI accelerators to optimize execution matrices.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#projects" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded text-lg transition-all duration-200 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 transform hover:-translate-y-0.5">View My Work</a>
+                <a href="resume.pdf" download="Kavin_Shantanu_Resume.pdf" class="px-8 py-4 border border-emerald-500 text-emerald-400 font-semibold rounded text-lg transition-all duration-200 hover:bg-emerald-500/10 flex items-center gap-3 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-download text-base"></i> Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="reveal-section py-32 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 border-t border-gray-900 relative z-10">
+        <h2 class="text-4xl font-bold text-slate-100 mb-12 flex items-center gap-4">
+            <i class="fa-solid fa-user text-emerald-400 text-2xl"></i> About Me
+        </h2>
+        <div class="grid lg:grid-cols-3 gap-12 items-start">
+            <div class="lg:col-span-2 text-slate-300 space-y-6 text-lg leading-relaxed bg-gray-900/90 border border-gray-800 p-8 rounded-xl shadow-xl hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/40 hover:border-emerald-500/30 transition-all duration-500 group">
+                <p>
+                    I am a dynamic and results-driven Quality Engineer with a strong foundation in modern testing methodologies. My mission is to enhance organizational growth by ensuring platform reliability, implementing strict validation standards, and keeping up with the latest tech shifts.
+                </p>
+                <p>
+                    From dynamic Agile sprints managing core e-commerce platforms to executing heavy Waterfall integrations for massive telecom infrastructures, I adapt quickly to cross-functional engineering teams. I hold a B.E. in Electrical and Electronics Engineering from Sri Ramakrishna Engineering College.
+                </p>
+                <p class="text-base font-mono text-emerald-400 mt-6 flex items-center gap-3 transition-colors group-hover:text-emerald-300">
+                    <i class="fa-solid fa-certificate text-lg"></i> ISTQB Certified Tester Foundation Level | Google Cloud Digital Leader
+                </p>
+            </div>
+            <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl shadow-xl relative z-20 hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/40 hover:border-emerald-500/30 transition-all duration-500">
+                <h3 class="text-emerald-400 font-bold mb-6 text-base tracking-wider uppercase font-mono">Quick Info</h3>
+                <ul class="space-y-4 text-base text-slate-300">
+                    <li><strong class="text-slate-400">Based:</strong> Coimbatore, India</li>
+                    <li><strong class="text-slate-400">Languages:</strong> English, Tamil</li>
+                    <li><strong class="text-slate-400">Hobbies:</strong> Tinkering & Gardening</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal-section py-32 border-t border-gray-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <h2 class="text-4xl font-bold text-slate-100 mb-16 flex items-center gap-4">
+                <i class="fa-solid fa-layer-group text-emerald-400 text-2xl"></i> Technical Arsenal
+            </h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-300 shadow-md relative z-20 group">
+                    <div class="text-slate-600 text-3xl mb-5 group-hover:text-emerald-400 transition-colors duration-300"><i class="fa-solid fa-code"></i></div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-4">Automation & Scripts</h3>
+                    <p class="text-base text-slate-400 leading-relaxed">Selenium (Java, C#), BDD Framework, Cognizant's Craft Framework.</p>
+                </div>
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-300 shadow-md relative z-20 group">
+                    <div class="text-slate-600 text-3xl mb-5 group-hover:text-emerald-400 transition-colors duration-300"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-4">API & Backend Testing</h3>
+                    <p class="text-base text-slate-400 leading-relaxed">Postman, SoapUI, Swagger, REST/SOAP backend testing.</p>
+                </div>
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-300 shadow-md relative z-20 group">
+                    <div class="text-slate-600 text-3xl mb-5 group-hover:text-emerald-400 transition-colors duration-300"><i class="fa-solid fa-robot"></i></div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-4">AI & Next-Gen Tools</h3>
+                    <p class="text-base text-slate-400 leading-relaxed">No-code prototyping and AI script accelerators using GitHub Copilot & Cursor.</p>
+                </div>
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-300 shadow-md relative z-20 group">
+                    <div class="text-slate-600 text-3xl mb-5 group-hover:text-emerald-400 transition-colors duration-300"><i class="fa-solid fa-list-check"></i></div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-4">Lifecycle & Domains</h3>
+                    <p class="text-base text-slate-400 leading-relaxed">Agile/Waterfall, SIT, E2E, Regression, Telecom BSS, Ecommerce.</p>
+                </div>
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-500 group shadow-lg relative z-10">
+                    <div class="text-slate-600 text-3xl mb-5 group-hover:text-emerald-400 transition-colors duration-300"><i class="fa-solid fa-square-poll-horizontal"></i></div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-4">Management & Logs</h3>
+                    <p class="text-base text-slate-400 leading-relaxed">Jira (Xray, Dashboards), Rally, Kibana, Jenkins, Netcracker ILC.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal-section py-32 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 border-t border-gray-900 relative z-10">
+        <h2 class="text-4xl font-bold text-slate-100 mb-16 flex items-center gap-4">
+            <i class="fa-solid fa-briefcase text-emerald-400 text-2xl"></i> Professional Background
+        </h2>
+        <div class="space-y-16 relative before:absolute before:inset-0 before:left-4 before:md:left-1/2 before:w-0.5 before:bg-gray-800">
+            <div class="relative flex flex-col md:flex-row items-start md:justify-between group">
+                <div class="absolute left-4 md:left-1/2 w-5 h-5 rounded-full bg-emerald-400 -translate-x-1.5 md:-translate-x-2.5 border-4 border-gray-950 z-20 shadow-sm shadow-emerald-400"></div>
+                <div class="w-full md:w-[44%] pl-10 md:pl-0 md:text-right">
+                    <span class="text-sm font-mono text-emerald-400 block mb-2 font-bold tracking-wider">JANUARY 2023 - PRESENT</span>
+                    <h3 class="text-2xl font-bold text-slate-200">Telecommunication</h3>
+                    <h4 class="text-slate-400 text-base font-medium mb-4">VMO2</h4>
+                </div>
+                <div class="w-full md:w-[48%] pl-10 md:pl-0 bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-slate-300 text-base space-y-5 mt-2 md:mt-0 shadow-lg relative z-10 hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/40 hover:border-emerald-500/30 transition-all duration-500">
+                    <p class="border-l-2 border-gray-800 pl-4 group-hover:border-emerald-400 transition-colors leading-relaxed">
+                        Lead E2E testing lifecycles for major telecom deployments, managing test data setup and production delivery workflows.
+                    </p>
+                    <p class="border-l-2 border-gray-800 pl-4 group-hover:border-emerald-400 transition-colors leading-relaxed">
+                        Tested core telecom operations, focusing on MPN Portability and Migration.
+                    </p>
+                    <p class="border-l-2 border-gray-800 pl-4 group-hover:border-emerald-400 transition-colors leading-relaxed">
+                        Monitored system logs via Netcracker to identify issues and conducted API and functional validation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-start md:justify-between group">
+                <div class="absolute left-4 md:left-1/2 w-5 h-5 rounded-full bg-gray-800 group-hover:bg-emerald-400 -translate-x-1.5 md:-translate-x-2.5 border-4 border-gray-950 z-20 transition-colors duration-300"></div>
+                <div class="w-full md:w-[44%] pl-10 md:pl-0 md:text-right md:order-last">
+                    <span class="text-sm font-mono text-emerald-400 block mb-2 font-bold tracking-wider">AUGUST 2021 - DECEMBER 2022</span>
+                    <h3 class="text-2xl font-bold text-slate-200">Ecommerce</h3>
+                    <h4 class="text-slate-400 text-base font-medium mb-4">COMCAST</h4>
+                </div>
+                <div class="w-full md:w-[48%] pl-10 md:pl-0 bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-slate-300 text-base space-y-5 mt-2 md:mt-0 shadow-lg relative z-10 hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/40 hover:border-emerald-500/30 transition-all duration-500">
+                    <p class="border-l-2 border-gray-800 pl-4 group-hover:border-emerald-400 transition-colors leading-relaxed">
+                        Engineered validation frameworks using C#, Selenium, and Specflow within iterative, fast-paced production schedules.
+                    </p>
+                    <p class="border-l-2 border-slate-800 pl-4 group-hover:border-emerald-400 transition-colors leading-relaxed">
+                        Performed cross-browser and mobile compatibility testing across responsive layouts, iOS, and Android platforms.
+                    </p>
+                    <p class="border-l-2 border-slate-800 pl-4 group-hover:border-emerald-400 transition-colors leading-relaxed">
+                        Tracked active deployments, managed defects, and analyzed logs across infrastructure pipelines.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal-section py-32 border-t border-gray-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <h2 class="text-4xl font-bold text-slate-100 mb-16 flex items-center gap-4">
+                <i class="fa-solid fa-code-branch text-emerald-400 text-2xl"></i> Project Portfolios
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl flex flex-col justify-between hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-500 group shadow-lg relative z-10">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-bold">Enterprise Architecture</span>
+                            <i class="fa-solid fa-network-wired text-slate-600 group-hover:text-emerald-400 transition-colors text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-200 mb-3">Comcast BCP Portal</h3>
+                        <p class="text-base text-slate-400 mb-8 leading-relaxed">
+                            Supported the e-commerce self-service portal by executing Unit, Acceptance, and Regression testing within Agile sprints. Built scripts using Selenium with C# and handled backend validation via Swagger.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs font-mono text-slate-400">
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Selenium C#</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Specflow</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Swagger</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Rally</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl flex flex-col justify-between hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-500 group shadow-lg relative z-10">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-bold">System Integration Testing</span>
+                            <i class="fa-solid fa-bolt text-slate-600 group-hover:text-emerald-400 transition-colors text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-200 mb-3">VMO2 Netcracker 360</h3>
+                        <p class="text-base text-slate-400 mb-8 leading-relaxed">
+                            Ensuring quality delivery for the Netcracker platforms with SIT, E2E, and Regression environments. Utilized Selenium (Java), Postman, and SOAP UI alongside custom AI automated conversion transformations.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs font-mono text-slate-400">
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Java</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Postman</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Netcracker</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Jira Xray</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/90 backdrop-blur-md border border-gray-800 p-8 rounded-xl flex flex-col justify-between hover:bg-gradient-to-br hover:from-gray-900 hover:to-emerald-950/50 hover:border-emerald-500/30 transition-all duration-500 group shadow-lg relative z-10">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-bold">Automation Core</span>
+                            <a href="https://github.com/KavinShantanu/Java_Selenium" target="_blank" class="text-slate-500 hover:text-emerald-400 transition-colors duration-200 text-2xl" title="Open Repository">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-200 mb-3">Java Selenium Framework</h3>
+                        <p class="text-base text-slate-400 mb-8 leading-relaxed">
+                            An In Progress optimized automation engine built using Java and Selenium WebDriver. Features modular page object modeling architectures, customized utilities, and structured log reporting modules.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs font-mono text-slate-400">
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Java</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Selenium</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">TestNG</span>
+                        <span class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 group-hover:border-emerald-500/20">Maven</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal-section py-40 max-w-7xl mx-auto px-6 relative z-10 border-t border-gray-900">
+        <div class="max-w-4xl mx-auto text-center bg-gray-950/80 backdrop-blur-md p-12 md:p-16 rounded-2xl relative z-10">
+            <span class="text-emerald-400 font-mono text-base tracking-widest uppercase block mb-4 font-bold">What's Next?</span>
+            <h2 class="text-5xl font-bold text-slate-100 mb-6">Get In Touch</h2>
+            <p class="text-slate-300 mb-10 text-lg max-w-xl mx-auto leading-relaxed">
+                I am always looking for new challenges, exploring tech, or talking automation engineering architectures. Let's chat!
+            </p>
+            <div class="flex justify-center space-x-8 text-3xl mb-10 relative z-30">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kavinshantanu.1703035@gmail.com" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-200" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-200" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/KavinShantanu" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-200" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 relative z-30">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kavinshantanu.1703035@gmail.com" target="_blank" class="w-full sm:w-auto px-10 py-4 border border-emerald-400 text-emerald-400 font-bold rounded hover:bg-emerald-400/10 transition-all font-mono tracking-wide text-base">Say Hello</a>
+                <a href="resume.pdf" download="Kavin_Shantanu_Resume.pdf" class="w-full sm:w-auto px-8 py-4 bg-slate-900/60 border border-slate-800 text-slate-300 font-mono text-xs tracking-wider uppercase rounded font-bold hover:border-emerald-500/40 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download text-sm"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="py-10 border-t bg-gray-900/90 backdrop-blur-md border-gray-900 text-center text-sm font-mono text-slate-600 relative z-10">
+        <p>QEA &bull; Kavin Shantanu &bull; 2026</p>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-gray-900 border border-gray-800 text-emerald-400 rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:border-emerald-400 hover:text-white z-50 shadow-lg shadow-black/40 text-lg">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+        let shootingStars = [];
+        let comets = [];
+        let satellites = [];
+        const numAmbients = 85; 
+
+        function getRandomStellarColor() {
+            const roll = Math.random();
+            if (roll < 0.5714) {
+                return { core: 'rgba(224, 242, 254, ', halo: 'rgba(56, 189, 248, ' };
+            } else if (roll < 0.5714 + 0.2857) {
+                return { core: 'rgba(fee2e2, ', halo: 'rgba(ef4444, ' };
+            } else {
+                return { core: 'rgba(fef3c7, ', halo: 'rgba(f59e0b, ' };
+            }
+        }
+
+        const geminiStars = [
+            { name: 'Castor', cx: 0.42, cy: 0.28, r: 6.0, speed: 0.02, colors: { core: 'rgba(248, 250, 252, ', halo: 'rgba(14, 165, 233, ' } }, 
+            { name: 'Pollux', cx: 0.46, cy: 0.34, r: 7.5, speed: 0.015, colors: { core: 'rgba(fff7ed, ', halo: 'rgba(249, 115, 22, ' } }, 
+            { name: 'Mebsuta', cx: 0.35, cy: 0.36, r: 3.5, speed: 0.03, colors: getRandomStellarColor() },
+            { name: 'Tejat Posterior', cx: 0.31, cy: 0.44, r: 3.2, speed: 0.025, colors: getRandomStellarColor() },
+            { name: 'Propus', cx: 0.27, cy: 0.46, r: 2.5, speed: 0.04, colors: getRandomStellarColor() },
+            { name: 'Alhena', cx: 0.36, cy: 0.58, r: 4.5, speed: 0.018, colors: getRandomStellarColor() },
+            { name: 'Alzirr', cx: 0.40, cy: 0.61, r: 3.0, speed: 0.03, colors: getRandomStellarColor() },
+            { name: 'Wasat', cx: 0.44, cy: 0.45, r: 3.8, speed: 0.022, colors: getRandomStellarColor() },
+            { name: 'Mekbuda', cx: 0.41, cy: 0.51, r: 3.4, speed: 0.028, colors: getRandomStellarColor() },
+            { name: 'Gomeisa-prox', cx: 0.51, cy: 0.54, r: 2.8, speed: 0.035, colors: getRandomStellarColor() }
+        ];
+
+        const geminiBones = [
+            [0, 1], [0, 2], [2, 3], [3, 4], 
+            [1, 7], [7, 8], [8, 5], [5, 6], 
+            [7, 2], [8, 3], [1, 9]           
+        ];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            for(let i=0; i<numAmbients; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.5 + 0.4,
+                    phase: Math.random() * Math.PI * 2,
+                    speed: 0.008 + Math.random() * 0.015,
+                    colors: getRandomStellarColor()
+                });
+            }
+            geminiStars.forEach(s => {
+                s.phase = Math.random() * Math.PI * 2;
+            });
+        }
+
+        function createShootingStar() {
+            shootingStars.push({
+                x: Math.random() * canvas.width * 0.8,
+                y: Math.random() * canvas.height * 0.4,
+                len: Math.random() * 100 + 50,
+                speed: Math.random() * 12 + 8,
+                dx: Math.random() * 4 + 4, 
+                dy: Math.random() * 3 + 2,
+                opacity: 1,
+                fade: Math.random() * 0.02 + 0.015
+            });
+        }
+
+        function createComet() {
+            if (comets.length < 1) { 
+                comets.push({
+                    x: -100,
+                    y: Math.random() * canvas.height * 0.3,
+                    speed: Math.random() * 1.5 + 1,
+                    dx: Math.random() * 1 + 1.5,
+                    dy: Math.random() * 0.5 + 0.5,
+                    tailLen: Math.random() * 220 + 140,
+                    size: Math.random() * 1.5 + 1.5
+                });
+            }
+        }
+
+        function createSatellite() {
+            if (satellites.length < 1) { 
+                satellites.push({
+                    x: canvas.width + 100,
+                    y: Math.random() * canvas.height * 0.25,
+                    speed: Math.random() * 0.35 + 0.25, 
+                    dx: -1.6, 
+                    dy: 0.5,
+                    spinAngle: Math.random() * Math.PI * 2 
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(s => {
+                s.phase += s.speed;
+                let alpha = 0.08 + (Math.sin(s.phase) + 1) * 0.22;
+                ctx.fillStyle = `${s.colors.core}${alpha})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            if (Math.random() < 0.015) createShootingStar();
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                let ss = shootingStars[i];
+                ss.x += ss.speed;
+                ss.y += (ss.speed * (ss.dy / ss.dx));
+                ss.opacity -= ss.fade;
+                if (ss.opacity <= 0) { shootingStars.splice(i, 1); continue; }
+                ctx.strokeStyle = `rgba(56, 189, 248, ${ss.opacity * 0.4})`;
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(ss.x, ss.y);
+                ctx.lineTo(ss.x - ss.len, ss.y - (ss.len * (ss.dy / ss.dx)));
+                ctx.stroke();
+            }
+
+            if (Math.random() < 0.002) createComet();
+            for (let i = comets.length - 1; i >= 0; i--) {
+                let c = comets[i];
+                c.x += c.speed;
+                c.y += (c.speed * (c.dy / c.dx));
+                if (c.x > canvas.width + c.tailLen) { comets.splice(i, 1); continue; }
+                let grad = ctx.createLinearGradient(c.x, c.y, c.x - c.tailLen, c.y - (c.tailLen * (c.dy / c.dx)));
+                grad.addColorStop(0, 'rgba(14, 165, 233, 0.25)');
+                grad.addColorStop(0.3, 'rgba(56, 189, 248, 0.08)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = c.size * 1.5;
+                ctx.beginPath();
+                ctx.moveTo(c.x, c.y);
+                ctx.lineTo(c.x - c.tailLen, c.y - (c.tailLen * (c.dy / c.dx)));
+                ctx.stroke();
+                ctx.fillStyle = 'rgba(240, 249, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            if (Math.random() < 0.004) createSatellite();
+            for (let i = satellites.length - 1; i >= 0; i--) {
+                let sat = satellites[i];
+                sat.x += sat.speed * sat.dx;
+                sat.y += sat.speed * sat.dy;
+                sat.spinAngle += 0.005; 
+
+                if (sat.x < -150 || sat.y > canvas.height + 150) {
+                    satellites.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.translate(sat.x, sat.y);
+                ctx.rotate(sat.spinAngle); 
+
+                ctx.fillStyle = 'rgba(241, 245, 249, 0.75)'; 
+                ctx.strokeStyle = 'rgba(241, 245, 249, 0.85)';
+                ctx.lineWidth = 0.6;
+
+                ctx.beginPath();
+                ctx.moveTo(-12, 0);
+                ctx.lineTo(12, 0);
+                ctx.stroke();
+
+                ctx.fillRect(-3, -1.5, 6, 3);
+                ctx.fillRect(-1, -2.5, 2, 5);
+
+                ctx.fillStyle = 'rgba(148, 163, 184, 0.35)'; 
+
+                ctx.fillRect(6, -7, 2, 5);
+                ctx.fillRect(6, 2, 2, 5);
+                ctx.fillRect(9, -7, 2, 5);
+                ctx.fillRect(9, 2, 2, 5);
+                ctx.fillRect(-8, -7, 2, 5);
+                ctx.fillRect(-8, 2, 2, 5);
+                ctx.fillRect(-11, -7, 2, 5);
+                ctx.fillRect(-11, 2, 2, 5);
+
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+                ctx.strokeRect(6, -7, 2, 5);
+                ctx.strokeRect(6, 2, 2, 5);
+                ctx.strokeRect(9, -7, 2, 5);
+                ctx.strokeRect(9, 2, 2, 5);
+                ctx.strokeRect(-8, -7, 2, 5);
+                ctx.strokeRect(-8, 2, 2, 5);
+                ctx.strokeRect(-11, -7, 2, 5);
+                ctx.strokeRect(-11, 2, 2, 5);
+
+                ctx.restore();
+            }
+
+            const centerX = canvas.width * 0.5;
+            const centerY = canvas.height * 0.45;
+            const scale = Math.min(canvas.width, canvas.height) * 1.15; 
+            const nodes = geminiStars.map(s => {
+                return { x: centerX + (s.cx - 0.4) * scale, y: centerY + (s.cy - 0.45) * scale, ref: s };
+            });
+
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
+            ctx.lineWidth = 1.0;
+            geminiBones.forEach(bone => {
+                const p1 = nodes[bone[0]]; const p2 = nodes[bone[1]];
+                ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+            });
+
+            nodes.forEach(n => {
+                n.ref.phase += n.ref.speed;
+                let twinkle = 0.4 + (Math.sin(n.ref.phase) + 1) * 0.3;
+                ctx.fillStyle = `${n.ref.colors.halo}${twinkle * 0.22})`;
+                ctx.beginPath(); ctx.arc(n.x, n.y, n.ref.r * 2.5, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = `${n.ref.colors.core}${twinkle * 0.95})`;
+                ctx.beginPath(); ctx.arc(n.x, n.y, n.ref.r * 0.85, 0, Math.PI * 2); ctx.fill();
+            });
+
+            document.body.style.background = "#030712"; 
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+
+        // High-Accuracy Scroll Tracking & Nav Glow Observer
+        const sections = document.querySelectorAll('section, id');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        const observerOptions = { 
+            root: null, 
+            threshold: 0.22, 
+            rootMargin: "-15% 0px -35% 0px" 
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('reveal-section')) {
+                    entry.target.classList.add('active');
+                }
+                
+                if (entry.isIntersecting) {
+                    const targetId = entry.target.getAttribute('id');
+                    const directNavLink = document.getElementById(`nav-${targetId}`);
+                    if (directNavLink) {
+                        navLinks.forEach(link => link.classList.remove('active-nav'));
+                        directNavLink.classList.add('active-nav');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => { sectionObserver.observe(section); });
+
+        // Back To Top Engine Interaction
+        const bttButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                bttButton.classList.remove('opacity-0', 'pointer-events-none');
+                bttButton.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                bttButton.classList.remove('opacity-100', 'pointer-events-auto');
+                bttButton.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+        bttButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Typewriter Matrix Array Engine
+        const words = [
+            "Quality Engineer",
+            "Automation Engineer",
+            "API Validation Specialist",
+            "E2E Testing Architect",
+            "System Integration Engineer"
+        ];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const targetElement = document.getElementById("typewriter");
+
+        function typeLoop() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                targetElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                targetElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 45 : 95;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2200; 
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400; 
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(typeLoop, 800);
+        });
+    </script>
+</body>
+</html>
